@@ -44,7 +44,7 @@ This is why `sample_count` must land on an offset that is a multiple of 8
 (it lands on offset 8), and why the whole struct size must be a multiple of 8.
 
 ---
-## Observed padding
+## OBSERVED PADDING
 
 **Padding** = the invisible filler bytes the compiler inserts so every field lands on
 a properly aligned address. Walking through the layout:
