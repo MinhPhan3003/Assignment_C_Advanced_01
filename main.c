@@ -1,6 +1,7 @@
-
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
+#include <crtdbg.h>
 #include "Measurement.h"
 #include "Repository.h"
 #include "Callbacks.h"
@@ -102,7 +103,7 @@ void action_add(Measurement*** storage, size_t* size, size_t* capacity) {
 }
 
 int main(void) {
-    Measurement** storage = NULL;   // start empty; Repository_Add allocates lazily
+    Measurement** storage = NULL;   // start empty;
     size_t size = 0;
     size_t capacity = 0;
     long choice;
@@ -133,7 +134,11 @@ int main(void) {
             //Search a record base on ID
         case 2: {
             long id;
-
+            if (size == 0)
+            {
+                printf("[ERROR] STORAGE IS EMPTY");
+                break;
+            }
             if (!read_long("Enter ID to find: ", &id)) {
                 printf("  [Error] Invalid ID input.\n");
                 break;
@@ -153,7 +158,11 @@ int main(void) {
               //Delete a record base on ID
         case 3: {
             long id;
-
+            if (size == 0)
+            {
+                printf("[ERROR] STORAGE IS EMPTY");
+                break;
+            }
             if (!read_long("Enter ID to delete: ", &id)) {
                 printf("  [Error] Invalid ID input.\n");
                 break;
@@ -198,5 +207,6 @@ int main(void) {
     // Final cleanup
     Repository_Clear(&storage, &size, &capacity);
     printf("All memory freed.\n");
+    _CrtDumpMemoryLeaks();
     return 0;
 }
