@@ -16,5 +16,5 @@ Measurement* Repository_Find(Measurement** storage, size_t size, uint16_t id);
 
 void Repository_ForEach(Measurement** storage, size_t size, void (*callback)(const Measurement*));
 
-
+void Repository_Clear(Measurement*** storage, size_t* size, size_t* capacity);
 #endif 
