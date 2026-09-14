@@ -41,9 +41,11 @@ bool Repository_Add(Measurement*** storage, size_t* size, size_t* capacity, Meas
     return true;
 }
 bool Repository_Delete(Measurement*** storage, size_t* size, uint16_t id) {
-    if (storage==NULL|| *storage == NULL || *size == 0) {
+    if (storage==NULL|| *storage == NULL) {
         return false;
     }
+
+
     for (size_t i = 0; i < *size; i++) {
         if ((*(*storage + i)) != NULL) {
             if ((*(*storage + i))->id == id) {
@@ -64,7 +66,7 @@ bool Repository_Delete(Measurement*** storage, size_t* size, uint16_t id) {
 }
 
 Measurement* Repository_Find(Measurement** storage, size_t size, uint16_t id) {
-    if (storage == NULL || size == 0) {
+    if (storage == NULL) {
         printf("FINDING RECORD FAIL");
         return NULL;
     }
